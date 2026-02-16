@@ -285,7 +285,7 @@
 
         /* Burbujas */
         .bubble {
-            position:  fixed;
+            position: fixed;
             bottom: -100px;
             background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
             border-radius: 50%;
@@ -471,45 +471,103 @@
 
     <script>
 
-        /* MENSAJES SEGÚN LA HORA */
-        const hour = new Date().getHours();
+        /* MENSAJES CADA 2 HORAS */
+       const messagesByHour = {
+    0: { 
+        title: "Si no puedes dormir...", 
+        message: "A veces la mente no se apaga.\nRespira lento.\nNo todo se resuelve esta noche 🌙", 
+        bg: "linear-gradient(to bottom, #000814, #001d3d, #003566)" 
+    },
 
-        let titleText = "";
-        let messageText = "";
-        let background = "";
+    2: { 
+        title: "Aún despierta?", 
+        message: "Descansa un poco.\nTu cuerpo también necesita pausa.\nMañana será más claro 😴", 
+        bg: "linear-gradient(to bottom, #000814, #001d3d, #003566)" 
+    },
 
-        /* Madrugada */
-        if (hour >= 0 && hour < 6) {
-            titleText = "Si no puedes dormir...";
-            messageText = "A veces la mente no se apaga.\nRespira lento.\nMañana todo se verá más claro 🌙";
-            background = "linear-gradient(to bottom, #000814, #001d3d, #003566)";
+    4: { 
+        title: "Ya casi amanece...", 
+        message: "Incluso las noches largas terminan.\nUn nuevo día está por empezar ✨", 
+        bg: "linear-gradient(to bottom, #000814, #001d3d, #003566)" 
+    },
+
+    6: { 
+        title: "Buenos días ☀️", 
+        message: "Empieza con calma.\nLo haras muy bien.\nSolo empieza.", 
+        bg: "linear-gradient(to bottom, #023e8a, #0077b6, #90e0ef)" 
+    },
+
+    8: { 
+        title: "Mucha suerte hoy 💼", 
+        message: "Que te vaya muy bien en el trabajo.\nConfía en lo que sabes hacer.\nTodo va a salir bien.", 
+        bg: "linear-gradient(to bottom, #023e8a, #0077b6, #90e0ef)" 
+    },
+
+    10: { 
+        title: "Ya arrancaste", 
+        message: "Vas bien.\nConcéntrate en una cosa a la vez.\nSigue así.", 
+        bg: "linear-gradient(to bottom, #0066b3, #0088d4, #5bb3e8)" 
+    },
+
+    12: { 
+        title: "Mitad del día ⚡", 
+        message: "Haz una pequeña pausa.\nToma agua.\nRespira un momento.", 
+        bg: "linear-gradient(to bottom, #001f3f, #003d7a, #0077b6)" 
+    },
+
+    14: { 
+        title: "La tarde puede pesar...", 
+        message: "Pero ya hiciste bastante.\nSigue a tu ritmo.\nNo necesitas correr.", 
+        bg: "linear-gradient(to bottom, #001f3f, #003d7a, #0077b6)" 
+    },
+
+    16: { 
+        title: "Ya casi termina", 
+        message: "Lo más pesado ya pasó.\nUn poco más y listo.\nVas bien.", 
+        bg: "linear-gradient(to bottom, #001f3f, #003d7a, #0077b6)" 
+    },
+
+    18: { 
+        title: "Se va el día...", 
+        message: "Mira todo lo que hiciste hoy.\nEso cuenta.\nReconócelo.", 
+        bg: "linear-gradient(to bottom, #001219, #001f3f, #003566)" 
+    },
+
+    20: { 
+        title: "Baja el ritmo", 
+        message: "No todo tiene que resolverse hoy.\nEmpieza a desconectar.\nTe lo mereces.", 
+        bg: "linear-gradient(to bottom, #001219, #001f3f, #003566)" 
+    },
+
+    22: { 
+        title: "Hora de descansar", 
+        message: "Hiciste lo que pudiste.\nEso es suficiente.\nDuerme tranquila 💤", 
+        bg: "linear-gradient(to bottom, #001219, #001f3f, #003566)" 
+    }
+};
+
+
+        function updateMessage() {
+            const now = new Date();
+            const hour = now.getHours();
+            const minutes = now.getMinutes();
+
+            // Encontrar el mensaje según la hora (cada 2 horas)
+            let targetHour = Math.floor(hour / 2) * 2;
+            const messageData = messagesByHour[targetHour];
+
+            if (messageData) {
+                document.getElementById("title").innerText = messageData.title;
+                document.getElementById("message").innerText = messageData.message;
+                document.body.style.background = messageData.bg;
+            }
         }
 
-        /* Mañana */
-        else if (hour >= 6 && hour < 12) {
-            titleText = "Buenos días ☀️";
-            messageText = "No tienes que hacerlo perfecto.\nSolo empieza como puedas.\nSolo hazlo a tu ritmo. 🌊";
-            background = "linear-gradient(to bottom, #023e8a, #0077b6, #90e0ef)";
-        }
+        // Actualizar mensaje al cargar
+        updateMessage();
 
-        /* Tarde */
-        else if (hour >= 12 && hour < 19) {
-            titleText = "Si el día pesa...";
-            messageText = "Aunque no lo sientas,\nhas avanzado más de lo que crees.\nDate un respiro, lo mereces 🐢";
-            background = "linear-gradient(to bottom, #001f3f, #003d7a, #0077b6)";
-        }
-
-        /* Noche */
-        else {
-            titleText = "Deja el día aquí...";
-            messageText = "Mañana puedes continuar.\nAhora solo descansa.\nYa has hecho lo mejor que has podido hoy.";
-            background = "linear-gradient(to bottom, #001219, #001f3f, #003566)";
-        }
-
-        /* Aplicar contenido */
-        document.getElementById("title").innerText = titleText;
-        document.getElementById("message").innerText = messageText;
-        document.body.style.background = background;
+        // Actualizar mensaje cada minuto para que sea dinámico
+        setInterval(updateMessage, 60000);
 
         /* Función para mostrar el mensaje */
         function showMessage() {
