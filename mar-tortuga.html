@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un pequeño respiro 🌊</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+        }
+
+        body {
+            height: 100vh;
+            height: 100dvh;
+            /* Usa altura de viewport dinámica en móviles */
+            width: 100%;
+            overflow: hidden;
+            position: fixed;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom,
+                    #001219 0%,
+                    #003554 30%,
+                    #006494 60%,
+                    #0582ca 85%,
+                    #00a6fb 100%);
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
+        }
+
+        /* Luz suave en el mar */
+        body::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 30% -10%, rgba(135, 206, 235, 0.15), transparent 50%),
+                radial-gradient(circle at 70% -5%, rgba(173, 216, 230, 0.1), transparent 45%);
+            animation: moveLight 15s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes moveLight {
+            from {
+                transform: translateX(-10%);
+            }
+
+            to {
+                transform: translateX(10%);
+            }
+        }
+
+        /* Contenedor mensaje */
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            text-align: center;
+            padding: 30px;
+            width: 90%;
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 10;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .container.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .container h1 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+            letter-spacing: 1px;
+        }
+
+        .container p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Botón de cerrar */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            color: white;
+            font-weight: 300;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .close-btn:active {
+            transform: scale(0.95) rotate(90deg);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Botón para mostrar mensaje */
+        .show-message-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 18px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        .show-message-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .show-message-btn:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        .show-message-btn.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .show-message-btn.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* Burbujas */
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+            animation: rise linear infinite;
+        }
+
+        @keyframes rise {
+            from {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(-60vh) translateX(20px);
+            }
+
+            to {
+                transform: translateY(-120vh) translateX(-10px);
+                opacity: 0;
+            }
+        }
+
+        /* Tortugas */
+        .turtle {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            left: -100px;
+            animation: swim linear infinite;
+            animation-fill-mode: both;
+            filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes swim {
+            0% {
+                left: -100px;
+            }
+
+            100% {
+                left: calc(100% + 100px);
+            }
+        }
+
+        .turtle-body {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shell {
+            position: absolute;
+            width: 55px;
+            height: 45px;
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2e 40%, #5a8c3a 70%, #3a6322 100%);
+            border-radius: 50%;
+            left: 12px;
+            top: 7px;
+            border: 3px solid #1f3a0f;
+            box-shadow: inset -5px -5px 15px rgba(0, 0, 0, 0.3), inset 3px 3px 10px rgba(90, 140, 58, 0.5);
+        }
+
+        .shell::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #6a9c42, #4a7c2e);
+            border-radius: 50%;
+            top: 4px;
+            left: 6px;
+            border: 2px solid #3a6322;
+        }
+
+        .shell::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #6a9c42, #4a7c2e);
+            border-radius: 50%;
+            top: 4px;
+            right: 6px;
+            border: 2px solid #3a6322;
+        }
+
+        .head {
+            position: absolute;
+            width: 24px;
+            height: 20px;
+            background: linear-gradient(90deg, #5a8c3a, #4a7c2e);
+            border-radius: 50% 50% 40% 40%;
+            left: -8px;
+            top: 20px;
+            border: 2px solid #3a6322;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .head::before {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #0d1b0a;
+            border-radius: 50%;
+            top: 6px;
+            left: 10px;
+            box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .flipper {
+            position: absolute;
+            width: 22px;
+            height: 12px;
+            background: linear-gradient(120deg, #5a8c3a, #4a7c2e);
+            border-radius: 60% 40% 60% 40%;
+            border: 2px solid #3a6322;
+            box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: paddle 1.2s infinite ease-in-out;
+        }
+
+        .flipper-left {
+            left: 8px;
+            top: 8px;
+        }
+
+        .flipper-right {
+            right: 8px;
+            top: 8px;
+            animation-delay: .6s;
+        }
+
+        .flipper-back-left {
+            left: 8px;
+            bottom: 8px;
+            animation-delay: .3s;
+        }
+
+        .flipper-back-right {
+            right: 8px;
+            bottom: 8px;
+            animation-delay: .9s;
+        }
+
+        @keyframes paddle {
+
+            0%,
+            100% {
+                transform: rotate(0deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(-20deg) scale(1.05);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="show-message-btn" id="showBtn" onclick="showMessage()">Ver mensaje</button>
+
+    <div class="container" id="container">
+        <button class="close-btn" onclick="closeMessage()">×</button>
+        <h1 id="title"></h1>
+        <div class="name">Fer</div>
+        <p id="message"></p>
+    </div>
+
+    <script>
+
+        /* MENSAJES SEGÚN LA HORA */
+        const hour = new Date().getHours();
+
+        let titleText = "";
+        let messageText = "";
+        let background = "";
+
+        /* Madrugada */
+        if (hour >= 0 && hour < 6) {
+            titleText = "Si no puedes dormir...";
+            messageText = "A veces la mente no se apaga.\nRespira lento.\nMañana todo se verá más claro 🌙";
+            background = "linear-gradient(to bottom, #000814, #001d3d, #003566)";
+        }
+
+        /* Mañana */
+        else if (hour >= 6 && hour < 12) {
+            titleText = "Buenos días ☀️";
+            messageText = "No tienes que hacerlo perfecto.\nSolo empieza como puedas.\nSolo hazlo a tu ritmo. 🌊";
+            background = "linear-gradient(to bottom, #023e8a, #0077b6, #90e0ef)";
+        }
+
+        /* Tarde */
+        else if (hour >= 12 && hour < 19) {
+            titleText = "Si el día pesa...";
+            messageText = "Aunque no lo sientas,\nhas avanzado más de lo que crees.\nDate un respiro, lo mereces 🐢";
+            background = "linear-gradient(to bottom, #001f3f, #003d7a, #0077b6)";
+        }
+
+        /* Noche */
+        else {
+            titleText = "Deja el día aquí...";
+            messageText = "Mañana puedes continuar.\nAhora solo descansa.\nYa has hecho lo mejor que has podido hoy.";
+            background = "linear-gradient(to bottom, #001219, #001f3f, #003566)";
+        }
+
+        /* Aplicar contenido */
+        document.getElementById("title").innerText = titleText;
+        document.getElementById("message").innerText = messageText;
+        document.body.style.background = background;
+
+        /* Función para mostrar el mensaje */
+        function showMessage() {
+            document.getElementById('container').classList.add('show');
+            document.getElementById('showBtn').classList.add('hidden');
+            document.getElementById('showBtn').classList.remove('visible');
+        }
+
+        /* Función para cerrar el mensaje */
+        function closeMessage() {
+            document.getElementById('container').classList.remove('show');
+            document.getElementById('showBtn').classList.remove('hidden');
+            document.getElementById('showBtn').classList.add('visible');
+        }
+
+        /* Generar burbujas */
+        for (let i = 0; i < 18; i++) {
+            let bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            let size = Math.random() * 20 + 10;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.animationDuration = (Math.random() * 10 + 8) + 's';
+            document.body.appendChild(bubble);
+        }
+
+        /* Generar tortugas */
+        for (let i = 0; i < 5; i++) {
+            let turtle = document.createElement('div');
+            turtle.className = 'turtle';
+            turtle.style.top = (20 + Math.random() * 60) + '%';
+            turtle.style.animationDuration = (Math.random() * 15 + 18) + 's';
+
+            // Delay escalonado para que aparezcan una tras otra
+            turtle.style.animationDelay = (i * 5) + (Math.random() * 3) + 's';
+
+            // Variar tamaño ligeramente para profundidad
+            let scale = 0.7 + Math.random() * 0.5;
+            turtle.style.width = (80 * scale) + 'px';
+            turtle.style.height = (60 * scale) + 'px';
+
+            // Opacidad según profundidad
+            let opacity = 0.6 + Math.random() * 0.4;
+            turtle.style.opacity = opacity;
+
+            turtle.innerHTML = `
+        <div class="turtle-body">
+            <div class="shell"></div>
+            <div class="head"></div>
+            <div class="flipper flipper-left"></div>
+            <div class="flipper flipper-right"></div>
+            <div class="flipper flipper-back-left"></div>
+            <div class="flipper flipper-back-right"></div>
+        </div>
+    `;
+
+            document.body.appendChild(turtle);
+        }
+
+    </script>
+
+</body>
+
+</html>
