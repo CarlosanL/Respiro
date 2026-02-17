@@ -4,12 +4,9 @@
   box-sizing: border-box;
 }
 
-
-
 body {
   min-height: 100vh;
   width: 100%;
-  overflow-x: hidden;
   font-family: "Segoe UI", sans-serif;
   background: linear-gradient(
     to bottom,
@@ -21,7 +18,6 @@ body {
   );
   transition: background 1s ease-in-out;
 }
-
 
 /* Fondos según la hora - Madrugada (0-6) */
 body.period-night {
@@ -112,13 +108,12 @@ body.period-late-night {
   ) !important;
 }
 
-/* Luz suave en el mar */
-body::after {
+/* Luz suave en el mar - Desactivado temporalmente para Safari iOS */
+/* body::after {
   content: "";
-  
   width: 200%;
   height: 200%;
-   position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   background:
@@ -137,7 +132,7 @@ body::after {
   will-change: transform;
   -webkit-transform: translateX(-10%);
   transform: translateX(-10%);
-}
+} */
 
 /* Sol */
 .sun {
@@ -148,9 +143,11 @@ body::after {
   border-radius: 50%;
   top: 5%;
   right: 10%;
+  left: auto;
   opacity: 0;
   box-shadow: 0 0 80px rgba(255, 215, 0, 0.5);
   transition: opacity 1s ease;
+  z-index: 1;
 }
 
 .sun.visible {
@@ -184,11 +181,14 @@ body::after {
 /* Estrellas */
 .stars {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
   transition: opacity 1s ease;
   pointer-events: none;
+  z-index: 1;
 }
 
 .stars.visible {
@@ -227,19 +227,7 @@ body::after {
     ) !important;
   }
 
-  body::after {
-    background:
-      radial-gradient(
-        circle at 30% -10%,
-        rgba(135, 206, 235, 0.12),
-        transparent 50%
-      ),
-      radial-gradient(
-        circle at 70% -5%,
-        rgba(173, 216, 230, 0.08),
-        transparent 45%
-      );
-  }
+  /* body::after desactivado para móvil también */
 }
 
 @keyframes moveLight {
