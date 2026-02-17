@@ -5,168 +5,182 @@ function getRandomName() {
 }
 
 const phrasesByPeriod = {
-  night: {
+  "0-2": {
     titles: [
-      "Si no puedes dormir...",
-      "Todavía despierta?",
-      "La noche también calma",
-      "Hora de soltar",
-      "Casi amanece",
-      "Silencio tranquilo",
+      "Madrugada profunda",
+      "Silencio nocturno",
+      "Hora de descansar",
+      "La noche abraza",
     ],
     messages: [
-      "A veces la mente no se apaga.\nRespira lento.\nNo todo se resuelve esta noche 🌙",
-      "Descansa un poco.\nTu cuerpo también necesita pausa.\nMañana lo verás distinto 😴",
-      "Incluso las noches largas terminan.\nUn nuevo día está en camino ✨",
-      "Dormir también es avanzar.\nCierra los ojos.\nMañana sigues, linda 🌊",
-      "No hay prisa ahora.\nSolo calma.\nTu descanso importa 💙",
-      "Tu mente merece tranquilidad.\nTu cuerpo también.\nSuelta por hoy 💤",
+      "Es muy tarde.\nDescansa.\nMañana todo sigue 🌙",
+      "Tu cuerpo necesita dormir.\nSuelta los pensamientos.\nDuerme tranquila 💤",
+      "Cierra los ojos.\nRespira.\nTodo puede esperar hasta mañana ✨",
+      "La noche es para descansar.\nPermítete parar.\nMañana continúas 💙",
     ],
   },
 
-  sunrise: {
+  "2-4": {
+    titles: [
+      "Noche profunda",
+      "Hora de dormir",
+      "Demasiado tarde",
+      "Descansa ya",
+    ],
+    messages: [
+      "Si estás despierta,\nintenta descansar.\nTu mente necesita pausa 😴",
+      "Nada es tan urgente.\nCierra los ojos.\nDuerme un poco 🌙",
+      "La madrugada es para soñar.\nNo para pensar.\nDescansa 💫",
+      "Suelta todo.\nRespira profundo.\nDuerme tranquila 💙",
+    ],
+  },
+
+  "4-6": {
+    titles: [
+      "Antes del amanecer",
+      "La noche termina",
+      "Pronto amanece",
+      "Última hora oscura",
+    ],
+    messages: [
+      "Casi amanece.\nSi puedes dormir un poco más,\nhazlo 🌅",
+      "Un nuevo día está cerca.\nDescansa estos últimos momentos 💤",
+      "La luz viene en camino.\nRespira tranquila.\nTodo empieza pronto ✨",
+      "Calma antes del día.\nAprovecha para descansar 🌊",
+    ],
+  },
+
+  "6-8": {
     titles: [
       "Amanece 🌅",
-      "Nuevo comienzo",
-      "La luz vuelve",
-      "Empieza algo nuevo",
-      "Un día más",
+      "Nuevo día empieza",
+      "Buenos días temprano",
+      "La luz llega",
     ],
     messages: [
-      "Un nuevo día empieza.\nNo necesitas correr.\nSolo avanzar.",
-      "La mañana trae otra oportunidad.\nHazla tuya, bonita ✨",
-      "Hoy no tiene que ser perfecto.\nSolo real.\nEso es suficiente 🌤",
-      "Respira profundo.\nEmpieza tranquila.\nVas bien.",
+      "Buenos días.\nEmpieza tranquila.\nTodo a tu ritmo ☀️",
+      "Un nuevo día.\nNo hay prisa.\nVas a estar bien 💛",
+      "Respira profundo.\nHoy es otro intento.\nVas bien ✨",
+      "Que tengas un buen día.\nEmpieza suave.\nPaso a paso 🌤",
     ],
   },
 
-  morning: {
+  "8-10": {
     titles: [
+      "Mañana activa",
+      "El día arranca",
       "Buenos días ☀️",
-      "Empieza con calma",
-      "Nuevo día",
-      "Que te vaya bien",
-      "Arranca suave",
-      "Paso a paso",
+      "Empieza con fuerza",
     ],
     messages: [
-      "Puedes con todo pero no todo a la vez.\nSolo empieza como puedas.\nEso basta.",
-      "Confía en lo que sabes hacer.\nHazlo a tu ritmo.\nVas bien 💪",
-      "Que tengas un buen día, linda.\nConcéntrate en una cosa a la vez.",
-      "Sin presión.\nHaz lo mejor que puedas.\nEso siempre cuenta, bonita.",
-      "Tu esfuerzo vale.\nNo lo olvides.\nSigue así.",
-      "Hoy puede ser un buen día.\nDéjalo fluir.\nTodo a su tiempo 🌊",
+      "La mañana es tuya.\nHaz lo que puedas.\nEso es suficiente 💪",
+      "Confía en ti.\nVas a lograrlo.\nUna cosa a la vez 🌟",
+      "Hoy puede ser bueno.\nSolo mantén tu ritmo.\nVas bien 💙",
+      "No te presiones.\nHaz tu mejor esfuerzo.\nEso siempre vale ✨",
     ],
   },
 
-  noon: {
+  "10-12": {
+    titles: ["Media mañana", "Sigue así", "Vas bien", "A mitad camino"],
+    messages: [
+      "Ya llevas avanzado.\nRespira.\nSigue cuando estés lista 💧",
+      "Lo estás haciendo bien.\nNo lo dudes.\nContinúa así 💪",
+      "Media mañana.\nToma un respiro.\nLuego sigues 🌊",
+      "Vas por buen camino.\nSigue tranquila.\nTodo fluye ✨",
+    ],
+  },
+
+  "12-14": {
     titles: [
-      "Mitad del día ⚡",
-      "Haz una pausa",
+      "Mediodía ⚡",
+      "Mitad del día",
+      "Hora de pausa",
       "Momento de respirar",
-      "Ya avanzaste bastante",
-      "Un pequeño descanso",
     ],
     messages: [
-      "Toma agua.\nRespira.\nSigue cuando estés lista 💧",
-      "Ya hiciste bastante.\nReconócelo.\nEso también es progreso.",
-      "No todo es urgente.\nDate un minuto.\nContinúa luego.",
-      "Mitad del día y sigues firme.\nEso habla bien de ti, bonita 💙",
-      "Descansar no es perder tiempo.\nEs cuidar tu energía.",
+      "Ya es mediodía.\nToma agua.\nDescansa un momento 💧",
+      "Llevas bastante hecho.\nReconócelo.\nDate un respiro 💙",
+      "No todo es urgente.\nPausa.\nLuego continúas 🌤",
+      "Mitad del día.\nVas firme.\nSigue así ✨",
     ],
   },
 
-  afternoon: {
-    titles: [
-      "La tarde pesa a veces",
-      "Ya casi termina",
-      "Sigue firme",
-      "Un poco más",
-      "Mantén el ritmo",
-    ],
+  "14-16": {
+    titles: ["Tarde empieza", "Segunda mitad", "Sigue adelante", "Un poco más"],
     messages: [
-      "Aunque el día pese,\nsigues avanzando.\nEso es lo importante.",
-      "Lo más pesado ya pasó.\nUn poco más y listo 💪",
-      "No necesitas correr.\nSolo mantener el paso.\nVas bien.",
-      "Cansancio es señal de esfuerzo.\nEso significa que estás dando todo.",
-      "Sigue así, linda.\nCon calma pero constante.",
+      "La tarde ya empezó.\nMantén el ritmo.\nVas bien 💪",
+      "Segunda parte del día.\nSigues firme.\nEso es valioso 🌟",
+      "No aflojes ahora.\nPoco a poco.\nLlegarás ✨",
+      "Tarde activa.\nSigue con calma.\nTodo avanza 🌊",
     ],
   },
 
-  sunset: {
-    titles: [
-      "El día baja el ritmo",
-      "Atardecer tranquilo",
-      "Se va el sol",
-      "Colores del cierre",
-      "Momento de mirar atrás",
-    ],
+  "16-18": {
+    titles: ["Tarde avanza", "Casi termina", "Último esfuerzo", "Ya casi"],
     messages: [
-      "Mira lo que hiciste hoy.\nEso cuenta.\nReconócelo 🌅",
-      "El día termina.\nTú sigues aquí.\nEso ya es suficiente.",
-      "No todo salió perfecto.\nPero hiciste tu parte.\nY eso vale.",
-      "El esfuerzo del día se nota.\nAhora empieza a bajar el ritmo.",
+      "La tarde pesa un poco.\nPero sigues ahí.\nEso cuenta 💙",
+      "Ya casi termina.\nUn poco más.\nVas a lograrlo 💪",
+      "Aunque canse,\nsigues avanzando.\nEso es importante ✨",
+      "Tarde larga.\nPero vas bien.\nSigue así 🌤",
     ],
   },
 
-  dusk: {
-    titles: [
-      "Entre el día y la noche",
-      "Cambio de ritmo",
-      "Hora de bajar la intensidad",
-      "Transición tranquila",
-      "Empieza la calma",
-    ],
+  "18-20": {
+    titles: ["Atardecer 🌅", "El día baja", "Se va el sol", "Empieza a cerrar"],
     messages: [
-      "Ya hiciste bastante.\nEmpieza a soltar lo que quede pendiente.",
-      "No te lleves todo a la noche.\nDeja algo para mañana.",
-      "Sigue siendo tú.\nEso siempre es suficiente 💙",
-      "La calma también es parte del progreso.",
+      "El día termina.\nMira lo que hiciste.\nEso vale 🌅",
+      "Atardecer tranquilo.\nYa hiciste bastante.\nDescansa 💙",
+      "Se va el sol.\nEmpieza a soltar.\nHiciste tu parte ✨",
+      "El esfuerzo se nota.\nAhora baja el ritmo.\nLo lograste 🌊",
     ],
   },
 
-  "late-night": {
-    titles: [
-      "Ya es tarde",
-      "Hora de cerrar el día",
-      "Casi a dormir",
-      "Último momento despierta",
-    ],
-    messages: [
-      "Cierra los ojos.\nHoy fue suficiente.\nMañana continúas 🌙",
-      "No tienes que pensar más.\nAhora toca descansar.",
-      "Duerme tranquila.\nTu esfuerzo de hoy vale.",
-      "Descansa, bonita.\nMañana será otro intento.",
-    ],
-  },
+  "20-22": {
+  titles: [
+    "Ya es hora de bajar el ritmo",
+    "Después de un día largo",
+    "Hora de cenar tranquila",
+    "Empieza la calma",
+  ],
+  messages: [
+    "Come algo rico.\nRespira un poco.\nEl día ya hizo lo suyo 🌙",
+    "No todo tiene que seguir ahora.\nCena tranquila.\nTu descanso importa 💙",
+    "Desconéctate un poco.\nNada urgente queda para esta hora.\nMereces calma ✨",
+    "Haz tu rutina con calma.\nSin presión.\nMañana sigues, linda 💤",
+  ],
+},
 
-  evening: {
-    titles: [
-      "Se va el día",
-      "Baja el ritmo",
-      "Reflexiona un poco",
-      "Buen cierre",
-      "Hora de soltar",
-    ],
-    messages: [
-      "Hoy hiciste lo que pudiste.\nEso es suficiente.",
-      "No todo tiene que resolverse hoy.\nSuelta un poco 💙",
-      "Tu esfuerzo fue real.\nEso importa.",
-      "Descansa, linda.\nEl día ya terminó.",
-      "Mañana puedes continuar.\nAhora toca parar.",
-    ],
-  },
+
+ "22-0": {
+  titles: [
+    "Ya es tarde",
+    "Modo descanso",
+    "Hora de soltar",
+    "Silencio",
+  ],
+  messages: [
+    "Si lees esto,\nya es hora de dormir.\nDescansa, bonita 🌙",
+    "Nada más por hoy.\nCierra los ojos.\nTodo está en orden 💙",
+    "Tu esfuerzo valió.\nAhora toca descansar 💤",
+    "Deja el día aquí.\nDuerme tranquila 😴",
+  ],
+},
+
 };
 
 function getPeriod(hour) {
-  if (hour >= 0 && hour < 6) return "night";
-  if (hour >= 6 && hour < 9) return "sunrise";
-  if (hour >= 9 && hour < 12) return "morning";
-  if (hour >= 12 && hour < 14) return "noon";
-  if (hour >= 14 && hour < 17) return "afternoon";
-  if (hour >= 17 && hour < 19) return "sunset";
-  if (hour >= 19 && hour < 21) return "dusk";
-  return "late-night";
+  if (hour >= 0 && hour < 2) return "0-2";
+  if (hour >= 2 && hour < 4) return "2-4";
+  if (hour >= 4 && hour < 6) return "4-6";
+  if (hour >= 6 && hour < 8) return "6-8";
+  if (hour >= 8 && hour < 10) return "8-10";
+  if (hour >= 10 && hour < 12) return "10-12";
+  if (hour >= 12 && hour < 14) return "12-14";
+  if (hour >= 14 && hour < 16) return "14-16";
+  if (hour >= 16 && hour < 18) return "16-18";
+  if (hour >= 18 && hour < 20) return "18-20";
+  if (hour >= 20 && hour < 22) return "20-22";
+  return "22-0";
 }
 
 function createStars() {
