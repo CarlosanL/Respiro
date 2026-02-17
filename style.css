@@ -1,0 +1,653 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+body {
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #001219 0%,
+    #003554 30%,
+    #006494 60%,
+    #0582ca 85%,
+    #00a6fb 100%
+  );
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
+  transition: background 1s ease-in-out;
+}
+
+/* Fondos según la hora - Madrugada (0-6) */
+body.period-night {
+  background: linear-gradient(
+    to bottom,
+    #0a0e27 0%,
+    #1a1a3e 20%,
+    #0d1b2a 50%,
+    #0a1929 100%
+  ) !important;
+}
+
+/* Amanecer (6-9) */
+body.period-sunrise {
+  background: linear-gradient(
+    to bottom,
+    #ff6b35 0%,
+    #ff9a56 15%,
+    #ffd89b 25%,
+    #87ceeb 60%,
+    #0099ff 100%
+  ) !important;
+}
+
+/* Mañana (9-12) */
+body.period-morning {
+  background: linear-gradient(
+    to bottom,
+    #87ceeb 0%,
+    #e0f6ff 30%,
+    #90e0ef 60%,
+    #0077b6 100%
+  ) !important;
+}
+
+/* Mediodía (12-14) */
+body.period-noon {
+  background: linear-gradient(
+    to bottom,
+    #87ceeb 0%,
+    #e0f6ff 20%,
+    #87ceeb 50%,
+    #0066b3 100%
+  ) !important;
+}
+
+/* Tarde (14-17) */
+body.period-afternoon {
+  background: linear-gradient(
+    to bottom,
+    #ffa500 0%,
+    #ffb84d 15%,
+    #87ceeb 40%,
+    #0077b6 100%
+  ) !important;
+}
+
+/* Atardecer (17-19) */
+body.period-sunset {
+  background: linear-gradient(
+    to bottom,
+    #ff4500 0%,
+    #ff6347 10%,
+    #ffa500 20%,
+    #ff8c00 30%,
+    #ff6347 50%,
+    #1a1a3e 100%
+  ) !important;
+}
+
+/* Anochecer (19-21) */
+body.period-dusk {
+  background: linear-gradient(
+    to bottom,
+    #2c1a4d 0%,
+    #1a1a3e 30%,
+    #0d1b2a 100%
+  ) !important;
+}
+
+/* Noche (21-0) */
+body.period-late-night {
+  background: linear-gradient(
+    to bottom,
+    #0a0e27 0%,
+    #1a1a3e 20%,
+    #0d1b2a 100%
+  ) !important;
+}
+
+/* Luz suave en el mar */
+body::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(
+      circle at 30% -10%,
+      rgba(135, 206, 235, 0.15),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% -5%,
+      rgba(173, 216, 230, 0.1),
+      transparent 45%
+    );
+  animation: moveLight 15s infinite alternate ease-in-out;
+  pointer-events: none;
+  will-change: transform;
+  -webkit-transform: translateX(-10%);
+  transform: translateX(-10%);
+}
+
+/* Sol */
+.sun {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at 35% 35%, #fff9e6, #ffd700, #ff9500);
+  border-radius: 50%;
+  top: 5%;
+  right: 10%;
+  opacity: 0;
+  box-shadow: 0 0 80px rgba(255, 215, 0, 0.5);
+  transition: opacity 1s ease;
+}
+
+.sun.visible {
+  opacity: 1;
+}
+
+/* Glow animado del sol */
+.sun::before {
+  content: "";
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: sunGlow 2s infinite;
+}
+
+@keyframes sunGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 60px rgba(255, 215, 0, 0.4);
+  }
+}
+
+/* Estrellas */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+
+.stars.visible {
+  opacity: 1;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Versión mejorada para móviles */
+@media (max-width: 768px) {
+  body {
+    background: linear-gradient(
+      to bottom,
+      #000814 0%,
+      #002041 25%,
+      #003d7a 50%,
+      #0066b3 75%,
+      #0088d4 100%
+    ) !important;
+  }
+
+  body::after {
+    background:
+      radial-gradient(
+        circle at 30% -10%,
+        rgba(135, 206, 235, 0.12),
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 70% -5%,
+        rgba(173, 216, 230, 0.08),
+        transparent 45%
+      );
+  }
+}
+
+@keyframes moveLight {
+  from {
+    transform: translateX(-10%);
+    -webkit-transform: translateX(-10%);
+  }
+
+  to {
+    transform: translateX(10%);
+    -webkit-transform: translateX(10%);
+  }
+}
+
+/* Contenedor mensaje */
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  -webkit-transform: translate(-50%, -50%) scale(0.8);
+  text-align: center;
+  padding: 30px;
+  width: 90%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  color: white;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  -webkit-transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change:
+    opacity,
+    transform,
+    -webkit-transform;
+}
+
+.container.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+.container h1 {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+
+.container p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: 0.95;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de cerrar */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 300;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.1) rotate(90deg);
+  -webkit-transform: scale(1.1) rotate(90deg);
+}
+
+.close-btn:active {
+  transform: scale(0.95) rotate(90deg);
+  -webkit-transform: scale(0.95) rotate(90deg);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Botón para mostrar mensaje */
+/* Contenedor de botones apilados */
+.button-stack {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 50;
+  -webkit-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+.button-stack.hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* Estilo base para todos los botones */
+.show-message-btn,
+.daily-btn,
+.spotify-btn {
+  padding: 18px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  cursor: pointer;
+  -webkit-transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  -webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.show-message-btn:hover,
+.daily-btn:hover,
+.spotify-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.show-message-btn:active,
+.daily-btn:active,
+.spotify-btn:active {
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.show-message-btn.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+}
+
+.show-message-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Burbujas */
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+  animation: rise linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(0) translateX(0);
+    -webkit-transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-60vh) translateX(20px);
+    -webkit-transform: translateY(-60vh) translateX(20px);
+  }
+
+  to {
+    transform: translateY(-120vh) translateX(-10px);
+    -webkit-transform: translateY(-120vh) translateX(-10px);
+    opacity: 0;
+  }
+}
+
+/* Tortugas */
+.turtle {
+  position: absolute;
+  width: 80px;
+  height: 60px;
+  left: -100px;
+  animation: swim linear infinite;
+  animation-fill-mode: both;
+  filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.3));
+  -webkit-filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.3));
+  will-change: transform, left;
+}
+
+@keyframes swim {
+  0% {
+    left: -100px;
+  }
+
+  100% {
+    left: calc(100% + 100px);
+  }
+}
+
+.turtle-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.shell {
+  position: absolute;
+  width: 55px;
+  height: 45px;
+  background: linear-gradient(
+    135deg,
+    #2d5016 0%,
+    #4a7c2e 40%,
+    #5a8c3a 70%,
+    #3a6322 100%
+  );
+  border-radius: 50%;
+  left: 12px;
+  top: 7px;
+  border: 3px solid #1f3a0f;
+  box-shadow:
+    inset -5px -5px 15px rgba(0, 0, 0, 0.3),
+    inset 3px 3px 10px rgba(90, 140, 58, 0.5);
+}
+
+.shell::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #6a9c42, #4a7c2e);
+  border-radius: 50%;
+  top: 4px;
+  left: 6px;
+  border: 2px solid #3a6322;
+}
+
+.shell::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #6a9c42, #4a7c2e);
+  border-radius: 50%;
+  top: 4px;
+  right: 6px;
+  border: 2px solid #3a6322;
+}
+
+.head {
+  position: absolute;
+  width: 24px;
+  height: 20px;
+  background: linear-gradient(90deg, #5a8c3a, #4a7c2e);
+  border-radius: 50% 50% 40% 40%;
+  left: -8px;
+  top: 20px;
+  border: 2px solid #3a6322;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.head::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #0d1b0a;
+  border-radius: 50%;
+  top: 6px;
+  left: 10px;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.flipper {
+  position: absolute;
+  width: 22px;
+  height: 12px;
+  background: linear-gradient(120deg, #5a8c3a, #4a7c2e);
+  border-radius: 60% 40% 60% 40%;
+  border: 2px solid #3a6322;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: paddle 1.2s infinite ease-in-out;
+}
+
+.flipper-left {
+  left: 8px;
+  top: 8px;
+}
+
+.flipper-right {
+  right: 8px;
+  top: 8px;
+  animation-delay: 0.6s;
+}
+
+.flipper-back-left {
+  left: 8px;
+  bottom: 8px;
+  animation-delay: 0.3s;
+}
+
+.flipper-back-right {
+  right: 8px;
+  bottom: 8px;
+  animation-delay: 0.9s;
+}
+
+@keyframes paddle {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    -webkit-transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(-20deg) scale(1.05);
+    -webkit-transform: rotate(-20deg) scale(1.05);
+  }
+}
+
+/* Mayor opacidad en móviles */
+@media (max-width: 768px) {
+  .container {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .show-message-btn {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    padding: 16px 36px;
+    font-size: 1rem;
+  }
+
+  .show-message-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+}
