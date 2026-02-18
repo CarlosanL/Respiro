@@ -318,7 +318,7 @@ const waterMessages = [
   "Tu cuerpo necesita hidratación.\nBebe un poco de agua, linda.\nTu piel y tu mente lo agradecerán 💙",
   "El agua es vida.\nTómate un momento para beber.\nCuídate como te mereces ✨",
   "Hidratación = bienestar.\nBebe con calma.\nTu cuerpo te lo pide 💧",
-  "Pequeño recordatorio:\ntuya.\n¡Bebe un poco de agua! 🌊",
+  "Pequeño recordatorio:\n¡Bebe un poco de agua! 🌊",
   "Entre todo lo que haces,\nno olvides cuidarte.\nBebe agua ahora 💙",
   "La hidratación es importante.\nToma un descanso y bebe algo.\nTu mente te lo agradecerá ✨",
   "Un paso simple pero importante:\nBebe agua.\nTuya merece cuidados 💧",
@@ -327,6 +327,12 @@ const waterMessages = [
 function showMessage() {
   document.getElementById("container").classList.add("show");
   document.getElementById("buttonStack").classList.add("hidden");
+
+  const waterMessage = getDailyWaterMessage();
+  const waterAlertText = document.getElementById("waterAlertTextInModal");
+  if (waterAlertText) {
+    waterAlertText.innerText = waterMessage;
+  }
 }
 
 function closeMessage() {
@@ -373,13 +379,10 @@ function showWaterAlert() {
   }, 300);
 }
 
-
-
 function closeWaterAlert() {
   const alertElement = document.getElementById("waterAlert");
   alertElement.classList.remove("show");
 }
-
 
 // function openSpotify() {
 //   window.open(
@@ -444,4 +447,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setInterval(updateMessage, 7200000); // 2 horas
 });
-

@@ -378,6 +378,22 @@ body.period-late-night {
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Alerta de agua dentro del modal */
+.water-alert-in-modal {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(173, 216, 230, 0.3);
+  font-size: 0.8rem;
+  color: rgba(173, 216, 230, 0.8);
+  text-align: center;
+  opacity: 0.8;
+}
+
+.water-alert-text-in-modal {
+  display: block;
+  line-height: 1.5;
+}
+
 /* Botón de cerrar */
 .close-btn {
   position: absolute;
@@ -737,28 +753,26 @@ body.period-late-night {
 
 /* Soporte específico para Safari en iOS */
 @supports (-webkit-touch-callout: none) {
- .water-alert {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+  .water-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
 
-  background: rgba(0, 150, 255, 0.95);
-  color: white;
+    background: rgba(0, 150, 255, 0.95);
+    color: white;
 
-  padding: 14px 20px;
-  z-index: 99999;
+    padding: 14px 20px;
+    z-index: 99999;
 
-  transform: translateY(-120%);
-  transition: transform 0.4s ease;
+    transform: translateY(-120%);
+    transition: transform 0.4s ease;
 
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-}
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  }
 
-.water-alert.show {
-  transform: translateY(0);
-}
-
-
+  .water-alert.show {
+    transform: translateY(0);
+  }
 }
