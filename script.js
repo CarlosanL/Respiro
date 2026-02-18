@@ -362,8 +362,16 @@ function getDailyWaterMessage() {
 
 function showWaterAlert() {
   const message = getDailyWaterMessage();
-  document.getElementById("waterAlertText").innerText = message;
-  document.getElementById("waterAlert").classList.add("show");
+  const alertElement = document.getElementById("waterAlert");
+  const textElement = document.getElementById("waterAlertText");
+
+  if (alertElement && textElement) {
+    textElement.innerText = message;
+    // Pequeño delay para asegurar que el DOM está listo en todos los navegadores
+    setTimeout(() => {
+      alertElement.classList.add("show");
+    }, 100);
+  }
 }
 
 function closeWaterAlert() {
