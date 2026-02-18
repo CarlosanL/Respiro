@@ -367,22 +367,15 @@ function showWaterAlert() {
 
   if (alertElement && textElement) {
     textElement.innerText = message;
-
-    // Safari workaround: Force reflow to ensure visibility
-    alertElement.style.display = "block";
-    alertElement.offsetHeight; // Trigger reflow
-    alertElement.style.display = "";
-
-    // Pequeño delay para asegurar que el DOM está listo en todos los navegadores
-    setTimeout(() => {
-      alertElement.classList.add("show");
-    }, 100);
+    alertElement.classList.add("show");
   }
 }
+
 
 function closeWaterAlert() {
   document.getElementById("waterAlert").classList.remove("show");
 }
+
 
 // function openSpotify() {
 //   window.open(

@@ -738,15 +738,36 @@ body.period-late-night {
 /* Soporte específico para Safari en iOS */
 @supports (-webkit-touch-callout: none) {
   .water-alert {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 10000 !important;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(0, 150, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 20px;
+  z-index: 10000;
 
-  .water-alert.show {
-    display: block !important;
-    visibility: visible !important;
-  }
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 
+    transform 0.4s ease,
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+
+.water-alert.show {
+  transform: translateY(0);
+  -webkit-transform: translateY(0);
+
+  opacity: 1;
+  visibility: visible;
+}
+
 }
