@@ -361,19 +361,23 @@ function getDailyWaterMessage() {
 }
 
 function showWaterAlert() {
-  const message = getDailyWaterMessage();
   const alertElement = document.getElementById("waterAlert");
   const textElement = document.getElementById("waterAlertText");
 
-  if (alertElement && textElement) {
-    textElement.innerText = message;
+  if (!alertElement || !textElement) return;
+
+  textElement.innerText = getDailyWaterMessage();
+
+  setTimeout(() => {
     alertElement.classList.add("show");
-  }
+  }, 300);
 }
 
 
+
 function closeWaterAlert() {
-  document.getElementById("waterAlert").classList.remove("show");
+  const alertElement = document.getElementById("waterAlert");
+  alertElement.classList.remove("show");
 }
 
 
@@ -432,7 +436,12 @@ document.addEventListener("DOMContentLoaded", function () {
   createBubbles();
   createTurtles();
   updateMessage();
-  showWaterAlert(); // Mostrar alerta de agua automáticamente
 
-  setInterval(updateMessage, 7200000); // 2 horas = 7200000 ms
+  // Delay corto para Safari iOS
+  setTimeout(() => {
+    showWaterAlert();
+  }, 800);
+
+  setInterval(updateMessage, 7200000); // 2 horas
 });
+
