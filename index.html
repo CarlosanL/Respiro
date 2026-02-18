@@ -14,6 +14,15 @@
     <div class="sun" id="sun"></div>
     <div class="stars" id="stars"></div>
 
+    <!-- Alerta de agua (banner flotante) -->
+    <div class="water-alert" id="waterAlert">
+        <div class="water-alert-content">
+            <span class="water-icon">💧</span>
+            <p id="waterAlertText"></p>
+            <button class="alert-close-btn" onclick="closeWaterAlert()">×</button>
+        </div>
+    </div>
+
     <!-- Botones apilados -->
     <div class="button-stack" id="buttonStack">
         <button class="show-message-btn" id="showBtn" onclick="showMessage()">Ver mensaje</button>

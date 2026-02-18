@@ -17,6 +17,7 @@ body {
     #00a6fb 100%
   );
   transition: background 1s ease-in-out;
+  padding-top: 0;
 }
 
 /* Fondos según la hora - Madrugada (0-6) */
@@ -98,7 +99,72 @@ body.period-dusk {
   ) !important;
 }
 
-/* Noche (21-0) */
+/* Alerta de agua - Banner flotante */
+.water-alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 150, 255, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 12px 20px;
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.water-alert.show {
+  transform: translateY(0);
+}
+
+.water-alert-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.water-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+#waterAlertText {
+  margin: 0;
+  flex: 1;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.alert-close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.alert-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+} /* Noche (21-0) */
 body.period-late-night {
   background: linear-gradient(
     to bottom,
@@ -632,5 +698,29 @@ body.period-late-night {
   .show-message-btn:hover {
     background: rgba(0, 0, 0, 0.7);
     border-color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Banner de agua responsivo */
+  .water-alert {
+    padding: 10px 15px;
+  }
+
+  .water-alert-content {
+    gap: 10px;
+    font-size: 0.85rem;
+  }
+
+  .water-icon {
+    font-size: 1.2rem;
+  }
+
+  .alert-close-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 1.2rem;
+  }
+
+  #waterAlertText {
+    font-size: 0.9rem;
   }
 }

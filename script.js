@@ -35,54 +35,41 @@ const phrasesByPeriod = {
     ],
   },
 
-"4-6": {
-  titles: [
-    "Buen inicio",
-    "Día nuevo",
-    "Arranca con calma",
-    "Primeros pasos",
-  ],
-  messages: [
-    "Que tengas un buen comienzo hoy.\nConfía en ti.\nTodo va bien",
-    "Empieza suave, linda.\nEl resto se acomoda solo",
-    "Aunque el sueño pese,\nya estás haciendo lo tuyo.\nEso habla bien de ti ",
-    "Respira.\nOrganiza.\nAvanza.\nAsí, simple",
-  ],
-},
-
-
+  "4-6": {
+    titles: ["Buen inicio", "Día nuevo", "Arranca con calma", "Primeros pasos"],
+    messages: [
+      "Que tengas un buen comienzo hoy.\nConfía en ti.\nTodo va bien",
+      "Empieza suave, linda.\nEl resto se acomoda solo",
+      "Aunque el sueño pese,\nya estás haciendo lo tuyo.\nEso habla bien de ti ",
+      "Respira.\nOrganiza.\nAvanza.\nAsí, simple",
+    ],
+  },
 
   "6-8": {
-  titles: [
-    "Buen inicio",
-    "Camino al día",
-    "Arrancando",
-    "Primeras horas",
-  ],
-  messages: [
-    "Desayuna tranquila.\nUn paso a la vez.\nEl día se acomoda solo ☕",
-    "En camino ya.\nRespira.\nTodo se va a dar 💛",
-    "Sin prisas.\nSolo ordena lo importante.\nLo demás puede esperar ✨",
-    "Empieza suave.\nConcéntrate en lo primero.\nVas bien 🌤",
-  ],
-},
-
+    titles: ["Buen inicio", "Camino al día", "Arrancando", "Primeras horas"],
+    messages: [
+      "Desayuna tranquila.\nUn paso a la vez.\nEl día se acomoda solo ☕",
+      "En camino ya.\nRespira.\nTodo se va a dar.",
+      "Se lo que eres.\nSe lo que puedes.\nConfía en ti, linda.",
+      "Sin prisas.\nSolo ordena lo importante.\nLo demás puede esperar ✨",
+      "Empieza suave.\nConcéntrate en lo primero.\nVas bien 🌤",
+    ],
+  },
 
   "8-10": {
-  titles: [
-    "Comienza el día",
-    "Ya en el trabajo",
-    "Hora de empezar",
-    "Primera parte del día",
-  ],
-  messages: [
-    "Buen inicio hoy.\nConcéntrate en lo importante.\nSin prisa ☀️",
-    "Haz lo que esté en tus manos.\nEso es suficiente",
-    "Empieza tranquila.\nTodo se acomoda trabajando ✨",
-    "Confianza y calma.\nCon eso basta, linda.\nEl día se va dando.",
-  ],
-},
-
+    titles: [
+      "Comienza el día",
+      "Ya en el trabajo",
+      "Hora de empezar",
+      "Primera parte del día",
+    ],
+    messages: [
+      "Buen inicio hoy.\nConcéntrate en lo importante.\nSin prisa ☀️",
+      "Haz lo que esté en tus manos.\nEso es suficiente",
+      "Empieza tranquila.\nTodo se acomoda trabajando ✨",
+      "Confianza y calma.\nCon eso basta, linda.\nEl día se va dando.",
+    ],
+  },
 
   "10-12": {
     titles: ["Media mañana", "Sigue así", "Vas bien", "A mitad camino"],
@@ -110,12 +97,7 @@ const phrasesByPeriod = {
   },
 
   "13-14": {
-    titles: [
-      "Hora de comer",
-      "Tu momento",
-      "Pausa real",
-      "Almuerzo tranquilo",
-    ],
+    titles: ["Hora de comer", "Tu momento", "Pausa real", "Almuerzo tranquilo"],
     messages: [
       "Come con calma.\nY toma agua 💧",
       "Este rato es para ti.\nNada de pendientes ahora 💙",
@@ -124,30 +106,18 @@ const phrasesByPeriod = {
     ],
   },
 
-
   "14-16": {
-  titles: [
-    "Ya casi",
-    "Último esfuerzo",
-    "Segunda parte",
-    "Mantén el paso",
-  ],
-  messages: [
-    "Último empujón, linda.\nVas muy bien.",
-    "Con calma pero firme.\nYa casi termina ✨",
-    "Mantén el enfoque.\nEso te sale natural.",
-    "Haz lo necesario.\nEl día ya está hecho casi 🌤",
-  ],
-},
-
+    titles: ["Ya casi", "Último esfuerzo", "Segunda parte", "Mantén el paso"],
+    messages: [
+      "Último empujón, linda.\nVas muy bien.",
+      "Con calma pero firme.\nYa casi termina ✨",
+      "Mantén el enfoque.\nEso te sale natural.",
+      "Haz lo necesario.\nEl día ya está hecho casi 🌤",
+    ],
+  },
 
   "16-17": {
-    titles: [
-      "Última hora",
-      "Cierre del día",
-      "Ya casi",
-      "Último tramo",
-    ],
+    titles: ["Última hora", "Cierre del día", "Ya casi", "Último tramo"],
     messages: [
       "Ya hiciste bastante hoy.\nSolo cierra lo pendiente.\nSin presión 💙",
       "Una hora más.\nHazlo simple.\nEso basta 💼",
@@ -172,12 +142,7 @@ const phrasesByPeriod = {
   },
 
   "18-19": {
-    titles: [
-      "Cambio de ritmo",
-      "De regreso",
-      "El día baja",
-      "Transición",
-    ],
+    titles: ["Cambio de ritmo", "De regreso", "El día baja", "Transición"],
     messages: [
       "Ya terminó la jornada.\nAhora ve bajando el ritmo 💙",
       "Camino a casa.\nRespira.\nEl día ya pasó ✨",
@@ -187,12 +152,7 @@ const phrasesByPeriod = {
   },
 
   "19-20": {
-    titles: [
-      "Tiempo para ti",
-      "Modo casa",
-      "Tu espacio",
-      "Recarga energía",
-    ],
+    titles: ["Tiempo para ti", "Modo casa", "Tu espacio", "Recarga energía"],
     messages: [
       "Ahora sí.\nHaz algo por ti 💙",
       "Ejercicio o descanso.\nLo que te haga bien ✨",
@@ -202,60 +162,53 @@ const phrasesByPeriod = {
   },
 
   "20-22": {
-  titles: [
-    "Ya es hora de bajar el ritmo",
-    "Después de un día largo",
-    "Hora de cenar tranquila",
-    "Empieza la calma",
-  ],
-  messages: [
-    "Come algo rico.\nRespira un poco.\nEl día ya hizo lo suyo 🌙",
-    "No todo tiene que seguir ahora.\nCena tranquila.\nTu descanso importa 💙",
-    "Desconéctate un poco.\nNada urgente queda para esta hora.\nMereces calma ✨",
-    "Haz tu rutina con calma.\nSin presión.\nMañana sigues, linda 💤",
-  ],
-},
+    titles: [
+      "Ya es hora de bajar el ritmo",
+      "Después de un día largo",
+      "Hora de cenar tranquila",
+      "Empieza la calma",
+    ],
+    messages: [
+      "Come algo rico.\nRespira un poco.\nEl día ya hizo lo suyo 🌙",
+      "No todo tiene que seguir ahora.\nCena tranquila.\nTu descanso importa 💙",
+      "Desconéctate un poco.\nNada urgente queda para esta hora.\nMereces calma ✨",
+      "Haz tu rutina con calma.\nSin presión.\nMañana sigues, linda 💤",
+    ],
+  },
 
-
- "22-0": {
-  titles: [
-    "Ya es tarde",
-    "Modo descanso",
-    "Hora de soltar",
-    "Silencio",
-  ],
-  messages: [
-    "Si lees esto,\nya es hora de dormir.\nDescansa, bonita 🌙",
-    "Nada más por hoy.\nCierra los ojos.\nTodo está en orden 💙",
-    "Tu esfuerzo valió.\nAhora toca descansar 💤",
-    "Deja el día aquí.\nDuerme tranquila 😴",
-  ],
-},
-
+  "22-0": {
+    titles: ["Ya es tarde", "Modo descanso", "Hora de soltar", "Silencio"],
+    messages: [
+      "Si lees esto,\nya es hora de dormir.\nDescansa, bonita 🌙",
+      "Nada más por hoy.\nCierra los ojos.\nTodo está en orden 💙",
+      "Tu esfuerzo valió.\nAhora toca descansar 💤",
+      "Deja el día aquí.\nDuerme tranquila 😴",
+    ],
+  },
 };
 
 function getPeriod(hour, minute = 0) {
   // Bloque especial: 12:00 - 13:15 (antes de salir a comer)
   if (hour === 12) return "12-13";
-  
+
   // Bloque especial: 13:15 - 14:00 (ya comiendo)
   if (hour === 13 && minute >= 15) return "13-14";
-  
+
   // Bloque especial: 13:00 - 13:15 (transición, sigue siendo el último tramo)
   if (hour === 13 && minute < 15) return "12-13";
-  
+
   // Bloque especial: 16:00 - 17:00 (última hora en el trabajo)
   if (hour === 16) return "16-17";
-  
+
   // Bloque especial: 17:00 - 18:00 (camino a casa)
   if (hour === 17) return "17-18";
-  
+
   // Bloque especial: 18:00 - 19:00 (transición / regreso)
   if (hour === 18) return "18-19";
-  
+
   // Bloque especial: 19:00 - 20:00 (ya en casa / tiempo personal)
   if (hour === 19) return "19-20";
-  
+
   // Resto de bloques de 2 horas
   if (hour >= 0 && hour < 2) return "0-2";
   if (hour >= 2 && hour < 4) return "2-4";
@@ -359,7 +312,17 @@ function updateMessage() {
 }
 
 const dailyNote =
-  "Ten un excelente dia, linda.\nHoy puedes con todo.\nConfía en ti y en el proceso.\nCon calma y paciencia todo saldra.\nAqui estoy para lo que necesites.";
+  "Hoy es un nuevo día para ti, Todo lo de ayer se queda ahi.\nSe que las cosas no salen siempre como quieres, pero eso no significa que no estés haciendo lo suficiente.\nConfía en tu proceso, linda.\nCada paso cuenta, aunque no lo veas ahora.\nSigue adelante, que vas bien.";
+
+const waterMessages = [
+  "Tu cuerpo necesita hidratación.\nBebe un poco de agua, linda.\nTu piel y tu mente lo agradecerán 💙",
+  "El agua es vida.\nTómate un momento para beber.\nCuídate como te mereces ✨",
+  "Hidratación = bienestar.\nBebe con calma.\nTu cuerpo te lo pide 💧",
+  "Pequeño recordatorio:\ntuya.\n¡Bebe un poco de agua! 🌊",
+  "Entre todo lo que haces,\nno olvides cuidarte.\nBebe agua ahora 💙",
+  "La hidratación es importante.\nToma un descanso y bebe algo.\nTu mente te lo agradecerá ✨",
+  "Un paso simple pero importante:\nBebe agua.\nTuya merece cuidados 💧",
+];
 
 function showMessage() {
   document.getElementById("container").classList.add("show");
@@ -380,6 +343,31 @@ function showDailyNote() {
 function closeDailyNote() {
   document.getElementById("noteContainer").classList.remove("show");
   document.getElementById("buttonStack").classList.remove("hidden");
+}
+
+function getDailyWaterMessage() {
+  const today = new Date().toDateString();
+  const stored = localStorage.getItem("waterMessageDate");
+  let messageIndex = localStorage.getItem("waterMessageIndex");
+
+  if (stored !== today) {
+    // Nuevo día, selecciona un mensaje aleatorio
+    messageIndex = Math.floor(Math.random() * waterMessages.length);
+    localStorage.setItem("waterMessageDate", today);
+    localStorage.setItem("waterMessageIndex", messageIndex);
+  }
+
+  return waterMessages[messageIndex];
+}
+
+function showWaterAlert() {
+  const message = getDailyWaterMessage();
+  document.getElementById("waterAlertText").innerText = message;
+  document.getElementById("waterAlert").classList.add("show");
+}
+
+function closeWaterAlert() {
+  document.getElementById("waterAlert").classList.remove("show");
 }
 
 // function openSpotify() {
@@ -437,6 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
   createBubbles();
   createTurtles();
   updateMessage();
+  showWaterAlert(); // Mostrar alerta de agua automáticamente
 
   setInterval(updateMessage, 7200000); // 2 horas = 7200000 ms
 });
