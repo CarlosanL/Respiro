@@ -301,7 +301,7 @@ function updateMessage() {
 
     let messageText = periodData.messages[messageIndex];
     messageText = messageText.replace(
-      /\b(linda|bonita|Fer|Fernanda|Torti)\b/gi,
+      /\b(Preciosa|Hermosa|María|Olmedo|María Fernanda)\b/gi,
       randomName,
     );
 
@@ -312,7 +312,7 @@ function updateMessage() {
 }
 
 const dailyNote =
-  "Hoy es un nuevo día para ti, Todo lo de ayer se queda ahi.\nSe que las cosas no salen siempre como quieres, pero eso no significa que no estés haciendo lo suficiente.\nConfía en tu proceso, linda.\nCada paso cuenta, aunque no lo veas ahora.\nSigue adelante, que vas bien.";
+  "Chula, que tengas un dia increíble.\nPodés con todo y mas, solo un paso a la vez.\nY espero que sea un dia lleno de cosas lindas, como tu.";
 
 const waterMessages = [
   "Tu cuerpo necesita hidratación.\nBebe un poco de agua, linda.\nTu piel y tu mente lo agradecerán 💙",
